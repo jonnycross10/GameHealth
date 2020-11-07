@@ -26,5 +26,20 @@ health = pytesseract.image_to_string(Image.open('screen.png')).strip()
 health = health[-5:].strip(" ")
 
 print(health)
+
+
+def convertPercentage(fraction):
+	numerator = 0
+	denominator = 0
+	splitFraction = fraction.split("/")
+	numerator = int(splitFraction[0])
+	denominator = int(splitFraction[1])
+	percentage = numerator / denominator
+	#int gets rid of trailing 0, and * 100 turns it into a whole #
+	return(int(round(percentage,2)*100))
+
+print(convertPercentage(health))
+
 f1 = open("health.txt", "w")
-f1.write(health)
+f1.write(str(convertPercentage(health)))
+
